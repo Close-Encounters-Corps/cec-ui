@@ -1,0 +1,22 @@
+name: Build image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Docker
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ghcr.io/close-encounters-corps/cec-ui:gehirn
