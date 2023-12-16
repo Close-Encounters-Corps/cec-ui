@@ -2,13 +2,11 @@
     import { currentUser, type DiscordUser, type FrontierUser, type UserOrNull } from "$lib/user";
     import { derived, type Readable } from "svelte/store";
     let discord = derived(currentUser, ($currentUser => {
-        const princ = $currentUser?.providers.find(x => x.class == "discord")
-        console.log(princ)
-        console.log(princ?.info)
+        const princ = $currentUser?.providers.find(x => x.type == "discord")
         return princ?.info as (DiscordUser | undefined)
     }))
     let frontier = derived(currentUser, (user => {
-        const princ = user?.providers.find(x => x.class == "frontier")
+        const princ = user?.providers.find(x => x.type == "frontier")
         return princ?.info as (FrontierUser | undefined)
     }))
     const discordLogin = () => {

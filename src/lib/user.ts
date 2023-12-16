@@ -5,7 +5,7 @@ export interface UserInfo {
     id: number
     pid: number
     providers: Array<{
-        class: "discord" | "frontier"
+        type: "discord" | "frontier"
         info: DiscordUser | FrontierUser
     }>,
     principal?: CecPrincipal
