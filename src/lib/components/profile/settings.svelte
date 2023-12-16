@@ -3,11 +3,13 @@
     import { derived, type Readable } from "svelte/store";
     let discord = derived(currentUser, ($currentUser => {
         const princ = $currentUser?.providers.find(x => x.class == "discord")
-        return princ?.info as (DiscordUser | undefined | null)
+        console.log(princ)
+        console.log(princ?.info)
+        return princ?.info as (DiscordUser | undefined)
     }))
     let frontier = derived(currentUser, (user => {
         const princ = user?.providers.find(x => x.class == "frontier")
-        return princ?.info as (FrontierUser | undefined | null)
+        return princ?.info as (FrontierUser | undefined)
     }))
     const discordLogin = () => {
         window.open("/api/v1/auth/discord/login")
@@ -19,7 +21,7 @@
 
 <h4 class="ui top attached dividing header">
     Discord
-    {#if $discord === null}
+    {#if $discord === undefined}
         <button class="ui right top attached tiny blue button" on:click={discordLogin}>Авторизоваться</button>
     {/if}
 </h4>
@@ -31,8 +33,8 @@
 {/if}
 
 <h4 class="ui top attached dividing header">
-    Discord
-    {#if $frontier === null}
+    frontier
+    {#if $frontier === undefined}
         <button class="ui right top attached tiny blue button" on:click={frontierLogin}>Авторизоваться</button>
     {/if}
 </h4>
