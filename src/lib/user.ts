@@ -4,14 +4,17 @@ import { writable } from "svelte/store"
 export interface UserInfo {
     id: number
     pid: number
-    providers: {
-        DISCORD: {info: DiscordUser}
-    },
+    providers: Array<{
+        class: "discord" | "frontier"
+        info: DiscordUser | FrontierUser
+    }>,
     principal?: CecPrincipal
 }
 
-export interface ProvidedUser {
-    info: DiscordUser
+export interface FrontierUser {
+    id: number
+    cmdr: string
+    capiObject: any
 }
 
 export interface DiscordUser {

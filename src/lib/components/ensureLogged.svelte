@@ -3,8 +3,10 @@
     import Modal from "./modal.svelte"
 
     const discord = () => {
-        const u = window.location.pathname
         window.open("/api/v1/auth/discord/login")
+    }
+    const frontier = () => {
+        window.open("/api/v1/auth/frontier/login")
     }
 </script>
 
@@ -15,5 +17,6 @@
     </div>
     <div class="ui centered container" slot="actions">
         <button class="ui button" on:click={discord}>Discord</button>
+        <button class="ui button" on:click={frontier}>Elite Dangerous</button>
     </div>
 </Modal>
